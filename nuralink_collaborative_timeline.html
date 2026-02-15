@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuralink Infotech - Collaborative Launch Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+        
+        .team-header {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .team-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .team-btn:hover {
+            background: white;
+            color: #1e3c72;
+        }
+        
+        .controls {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #1e3c72;
+            background: white;
+            color: #1e3c72;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .toggle-btn:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+        
+        .toggle-btn.active {
+            background: #1e3c72;
+            color: white;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .filter-btn:hover {
+            border-color: #1e3c72;
+            color: #1e3c72;
+        }
+        
+        .filter-btn.active {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            margin: 0 2rem 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .timeline-view {
+            padding: 2rem;
+        }
+        
+        .month-section {
+            margin-bottom: 4rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .month-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #1e3c72;
+        }
+        
+        .month-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-right: 1.5rem;
+            line-height: 1;
+        }
+        
+        .month-info h3 {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 0.25rem;
+        }
+        
+        .month-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activity-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .activity-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            border-color: #1e3c72;
+        }
+        
+        .activity-card.completed {
+            background: #f0f9ff;
+            border-color: #43e97b;
+        }
+        
+        .activity-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .category-legal { background: #fee; color: #c33; }
+        .category-brand { background: #fef; color: #c3c; }
+        .category-tech { background: #efe; color: #3c3; }
+        .category-marketing { background: #eff; color: #3cc; }
+        .category-sales { background: #ffe; color: #cc3; }
+        .category-operations { background: #eef; color: #33c; }
+        .category-finance { background: #ffd; color: #990; }
+        
+        .activity-title {
+            flex: 1;
+        }
+        
+        .activity-title h4 {
+            font-size: 1.1rem;
+            color: #1e3c72;
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .activity-description {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .activity-details {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+        
+        .detail-item strong {
+            color: #1e3c72;
+        }
+        
+        .assignee-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .assignee-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .assignee-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .assignee-select:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+        
+        .assignee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #1e3c72;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .assignee-badge.unassigned {
+            background: #e9ecef;
+            color: #666;
+        }
+        
+        .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+        
+        .checkbox-container label {
+            cursor: pointer;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .modal-header h2 {
+            color: #1e3c72;
+            font-size: 1.8rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: #f0f4ff;
+            color: #1e3c72;
+        }
+        
+        .team-list {
+            margin-bottom: 2rem;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        
+        .member-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .member-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .member-details h4 {
+            color: #1e3c72;
+            margin-bottom: 0.25rem;
+        }
+        
+        .member-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .remove-btn {
+            background: #fee;
+            color: #c33;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: #fcc;
+        }
+        
+        .add-member-form {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #1e3c72;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+        
+        .add-btn {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .add-btn:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+        
+        /* Team View */
+        .team-view {
+            display: none;
+            padding: 2rem;
+        }
+        
+        .team-view.active {
+            display: block;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-column {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .team-column-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #1e3c72;
+        }
+        
+        .team-column-header h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+        }
+        
+        .task-count {
+            background: #1e3c72;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .mini-activity-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-activity-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .mini-activity-card.completed {
+            background: #f0f9ff;
+            border-color: #43e97b;
+        }
+        
+        .mini-activity-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mini-activity-icon {
+            font-size: 1rem;
+        }
+        
+        .mini-activity-title {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        
+        .mini-activity-month {
+            font-size: 0.75rem;
+            color: #666;
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header h2 {
+                font-size: 1.25rem;
+            }
+            
+            .team-header {
+                position: static;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            .activities-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="team-header">
+                <button class="team-btn" onclick="openTeamModal()">👥 Manage Team</button>
+            </div>
+            <h1>🚀 Nuralink Infotech</h1>
+            <h2>Collaborative Launch Timeline</h2>
+            <p>6-Month Product Launch Plan with Team Task Management</p>
+        </div>
+        
+        <div class="controls">
+            <div class="view-toggle">
+                <button class="toggle-btn active" onclick="switchView('timeline')">📅 Timeline View</button>
+                <button class="toggle-btn" onclick="switchView('team')">👥 Team View</button>
+                <button class="toggle-btn" style="background: #43e97b; color: white; border-color: #43e97b;" onclick="openTeamModal()">➕ Add Team Member</button>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterCategory('all')">All Activities</button>
+                <button class="filter-btn" onclick="filterCategory('legal')">Legal & Setup</button>
+                <button class="filter-btn" onclick="filterCategory('brand')">Branding</button>
+                <button class="filter-btn" onclick="filterCategory('tech')">Technology</button>
+                <button class="filter-btn" onclick="filterCategory('marketing')">Marketing</button>
+                <button class="filter-btn" onclick="filterCategory('sales')">Sales & BD</button>
+                <button class="filter-btn" onclick="filterCategory('operations')">Operations</button>
+                <button class="filter-btn" onclick="filterCategory('finance')">Finance</button>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalActivities">42</div>
+                <div class="stat-label">Total Activities</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <div class="stat-value" id="completedActivities">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <div class="stat-value" id="progressPercent">0%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="stat-value" id="teamCount">0</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+        
+        <!-- Timeline View -->
+        <div class="timeline-view active" id="timelineView">
+            <!-- Activities will be populated by JavaScript -->
+        </div>
+        
+        <!-- Team View -->
+        <div class="team-view" id="teamView">
+            <div class="team-grid" id="teamGrid">
+                <!-- Team columns will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Team Management Modal -->
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👥 Team Management</h2>
+                <button class="close-btn" onclick="closeTeamModal()">×</button>
+            </div>
+            
+            <div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #1e3c72;">
+                <p style="margin: 0; color: #1e3c72; font-size: 0.9rem;">
+                    <strong>💡 Tip:</strong> Add your cofounders and team members here. Once added, you can assign tasks to them from the timeline view.
+                </p>
+            </div>
+            
+            <div class="add-member-form" style="margin-bottom: 2rem;">
+                <h3 style="color: #1e3c72; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    ➕ Add New Team Member
+                </h3>
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="memberName" placeholder="e.g., John Smith" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Role / Position *</label>
+                    <select id="memberRole">
+                        <option value="">Select a role...</option>
+                        <option value="Founder">Founder</option>
+                        <option value="Co-Founder">Co-Founder</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Senior Developer">Senior Developer</option>
+                        <option value="Marketing">Marketing Lead</option>
+                        <option value="Sales">Sales/BD Lead</option>
+                        <option value="Operations">Operations Manager</option>
+                        <option value="Designer">Designer</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Consultant">Consultant</option>
+                        <option value="Advisor">Advisor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email (Optional)</label>
+                    <input type="email" id="memberEmail" placeholder="e.g., john@nuralink.com" autocomplete="off">
+                </div>
+                <button class="add-btn" onclick="addTeamMember()">➕ Add Team Member</button>
+            </div>
+            
+            <div style="border-top: 2px solid #e9ecef; padding-top: 2rem;">
+                <h3 style="color: #1e3c72; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.2rem;">👤</span> Current Team Members
+                </h3>
+                <div class="team-list" id="teamList">
+                    <!-- Team members will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data structure for activities
+        const activities = [
+            // Month 1
+            { id: 1, month: 1, title: "UAE Free Zone Company Registration", category: "legal", icon: "⚖️", description: "Register Nuralink Infotech in preferred free zone (DMCC, IFZA, or RAK). Complete license application for IT consultancy and trading software development.", details: { cost: "AED 12-18k", duration: "2-3 weeks" }},
+            { id: 2, month: 1, title: "Visa Processing & Emirates ID", category: "legal", icon: "📋", description: "Complete founder visa application, medical tests, Emirates ID registration, and bank account opening.", details: { cost: "AED 4-7k", duration: "2-4 weeks" }},
+            { id: 3, month: 1, title: "Brand Identity Development", category: "brand", icon: "🎨", description: "Create logo, color palette, typography, and brand guidelines. Ensure professional, tech-forward aesthetic that appeals to both trading and IT consultancy markets.", details: { cost: "AED 3-8k", duration: "2 weeks" }},
+            { id: 4, month: 1, title: "Website Development Kickoff", category: "tech", icon: "💻", description: "Begin development of professional website with separate sections for trading solutions and IT consultancy. Include portfolio, service pages, contact forms, and blog.", details: { cost: "AED 5-15k", duration: "3-4 weeks" }},
+            { id: 5, month: 1, title: "Office Setup & Infrastructure", category: "operations", icon: "🏢", description: "Secure flexi desk or small office space. Set up business phone, email infrastructure (G Suite), project management tools (Notion/Monday), and CRM system.", details: { cost: "AED 5-10k", priority: "High" }},
+            { id: 6, month: 1, title: "Hire Remote Development Team", category: "operations", icon: "👥", description: "Recruit 2 developers (India-based) with expertise in Python, MT5/cTrader APIs, and web development. Establish remote work processes and communication protocols.", details: { timeline: "Week 3-4", priority: "High" }},
+            { id: 7, month: 1, title: "Company Profile & Collateral", category: "brand", icon: "📄", description: "Create professional company profile PDF, service brochures, presentation templates, email signatures, and proposal templates.", details: { cost: "AED 2-5k", duration: "1-2 weeks" }},
+            
+            // Month 2
+            { id: 8, month: 2, title: "Website Launch", category: "tech", icon: "🌐", description: "Launch fully functional website with SEO optimization, contact forms, service pages, case study templates, and blog. Implement analytics tracking.", details: { week: "1-2", priority: "Critical" }},
+            { id: 9, month: 2, title: "Develop Demo Trading Bot", category: "tech", icon: "🤖", description: "Create 1-2 demo algorithmic trading bots (MT5/cTrader) with backtesting results and performance metrics. Use as portfolio pieces and sales demos.", details: { duration: "2-3 weeks", priority: "High" }},
+            { id: 10, month: 2, title: "Social Media Setup", category: "marketing", icon: "📱", description: "Create and optimize LinkedIn company page, founder profiles, Instagram (optional), and Twitter. Develop content calendar for 3 months of posts.", details: { week: "1-2", cost: "Free-500 AED" }},
+            { id: 11, month: 2, title: "Content Marketing Strategy", category: "marketing", icon: "📝", description: "Develop content pillars: trading education, algo trading tips, IT transformation, UAE business guides. Create 10-15 blog posts/articles for launch.", details: { duration: "Ongoing", priority: "Medium" }},
+            { id: 12, month: 2, title: "Target Market Research", category: "sales", icon: "🎯", description: "Identify and create database of 100+ target prospects: UAE trading firms, prop shops, SMEs, trading educators, and fintech companies in GCC region.", details: { week: "1-3", priority: "High" }},
+            { id: 13, month: 2, title: "Company Introduction Video", category: "brand", icon: "🎬", description: "Create 2-3 minute company introduction video explaining services, team expertise, and value proposition. Use for website, LinkedIn, and sales outreach.", details: { cost: "AED 2-5k", priority: "Medium" }},
+            { id: 14, month: 2, title: "Pricing & Packaging Strategy", category: "sales", icon: "💰", description: "Finalize pricing tiers for trading bots (Basic/Advanced/Enterprise) and IT consultancy services. Create package bundles and discount strategies.", details: { week: "2-3", priority: "High" }},
+            
+            // Month 3
+            { id: 15, month: 3, title: "Official Product Launch", category: "marketing", icon: "🚀", description: "Execute launch campaign across LinkedIn, email, and direct outreach. Announce services, share case studies, offer limited-time launch promotions.", details: { week: "1", priority: "Critical" }},
+            { id: 16, month: 3, title: "Cold Email Campaign", category: "sales", icon: "📧", description: "Launch personalized cold email sequences to target prospects. Focus on pain points, share relevant case studies, offer free consultations.", details: { target: "200+ emails", duration: "Ongoing" }},
+            { id: 17, month: 3, title: "LinkedIn Outreach Campaign", category: "sales", icon: "🤝", description: "Connect with 50-100 target prospects per week on LinkedIn. Share valuable content, engage with posts, initiate conversations about their challenges.", details: { target: "400+ connections", priority: "High" }},
+            { id: 18, month: 3, title: "Free Value Campaign", category: "marketing", icon: "🎁", description: "Offer free trading bot analysis, IT infrastructure audits, or 30-min consultation calls. Generate leads and demonstrate expertise.", details: { goal: "20-30 leads", priority: "High" }},
+            { id: 19, month: 3, title: "Attend UAE Tech/Trading Events", category: "sales", icon: "🎤", description: "Participate in 2-3 networking events, trading conferences, or tech meetups in Dubai. Focus on DIFC, DMCC, or fintech communities.", details: { target: "2-3 events", priority: "Medium" }},
+            { id: 20, month: 3, title: "Paid Advertising Test", category: "marketing", icon: "💸", description: "Launch small-budget LinkedIn and Google Ads campaigns targeting 'algorithmic trading UAE' and 'IT consultancy Dubai'. Test and optimize messaging.", details: { budget: "AED 3-5k", priority: "Medium" }},
+            { id: 21, month: 3, title: "First Client Acquisition", category: "sales", icon: "🎯", description: "Close first 1-3 clients (trading bot or IT consultancy). Focus on delivering exceptional results to generate testimonials and referrals.", details: { goal: "1-3 clients", priority: "Critical" }},
+            
+            // Month 4
+            { id: 22, month: 4, title: "Case Study Development", category: "sales", icon: "📊", description: "Document first client successes into detailed case studies with metrics, challenges, solutions, and results. Use for marketing and sales.", details: { target: "2-3 case studies", priority: "High" }},
+            { id: 23, month: 4, title: "Partnership Development", category: "sales", icon: "🤝", description: "Establish partnerships with trading academies, brokers, and business consultants for referral arrangements and co-marketing opportunities.", details: { goal: "2-3 partnerships", priority: "Medium" }},
+            { id: 24, month: 4, title: "Video Content Strategy", category: "marketing", icon: "📹", description: "Create educational video series: 'Algo Trading 101', 'IT Transformation Tips', client testimonials. Post on LinkedIn, YouTube, website.", details: { target: "8-10 videos", priority: "Medium" }},
+            { id: 25, month: 4, title: "Process Documentation", category: "operations", icon: "⚙️", description: "Document standard operating procedures for client onboarding, project delivery, support, and quality assurance. Prepare for scaling.", details: { week: "2-4", priority: "Medium" }},
+            { id: 26, month: 4, title: "Financial Review & Forecasting", category: "finance", icon: "💰", description: "Review first quarter performance, adjust pricing if needed, create financial projections for next 6 months, identify areas for cost optimization.", details: { week: "1-2", priority: "High" }},
+            { id: 27, month: 4, title: "Referral Program Launch", category: "sales", icon: "🎯", description: "Create formal referral program offering 10-15% commission to clients, partners, or affiliates who bring new business.", details: { week: "2-3", priority: "Medium" }},
+            { id: 28, month: 4, title: "Client Acquisition Goal: 5-8 Projects", category: "sales", icon: "📈", description: "Target closing 5-8 new projects this month through refined sales process, referrals, and optimized marketing channels.", details: { goal: "5-8 projects", priority: "Critical" }},
+            
+            // Month 5
+            { id: 29, month: 5, title: "SaaS Product Development (Optional)", category: "tech", icon: "🚀", description: "Begin developing subscription-based trading bot platform or IT management dashboard if market validation suggests strong demand.", details: { duration: "2-3 months", priority: "Low-Medium" }},
+            { id: 30, month: 5, title: "Hire Sales/BD Person", category: "operations", icon: "👥", description: "Bring on commission-based or junior salary sales professional to scale outreach and client acquisition. Focus on UAE market knowledge.", details: { structure: "Base + Commission", priority: "High" }},
+            { id: 31, month: 5, title: "Thought Leadership Campaign", category: "marketing", icon: "📖", description: "Publish in-depth guides, whitepapers, or research reports on algorithmic trading strategies, UAE tech trends, or digital transformation.", details: { target: "2-3 resources", priority: "Medium" }},
+            { id: 32, month: 5, title: "Geographic Expansion Research", category: "sales", icon: "🌍", description: "Explore expansion opportunities into Saudi Arabia, Qatar, or India markets. Research regulations, partnerships, and market entry strategies.", details: { week: "2-4", priority: "Low" }},
+            { id: 33, month: 5, title: "Webinar/Workshop Series", category: "marketing", icon: "🎓", description: "Host monthly webinars on 'Algorithmic Trading Basics', 'IT Transformation for SMEs', or 'UAE Business Tech Trends' to generate leads.", details: { frequency: "Monthly", priority: "Medium" }},
+            { id: 34, month: 5, title: "Investor Pitch Deck (If Seeking Funding)", category: "finance", icon: "💼", description: "If considering external funding, create professional investor pitch deck with traction metrics, market opportunity, financial projections.", details: { week: "1-2", priority: "Optional" }},
+            { id: 35, month: 5, title: "Client Retention Strategy", category: "sales", icon: "🎯", description: "Implement client success program with regular check-ins, performance reviews, and upsell opportunities for maintenance and enhancements.", details: { goal: "80%+ retention", priority: "High" }},
+            
+            // Month 6
+            { id: 36, month: 6, title: "6-Month Performance Review", category: "finance", icon: "📊", description: "Comprehensive analysis of revenue, client acquisition costs, profitability, service line performance, and key learnings from first 6 months.", details: { week: "1", priority: "Critical" }},
+            { id: 37, month: 6, title: "Strategic Focus Decision", category: "operations", icon: "🎯", description: "Based on performance data, decide whether to: (1) Double down on trading tech, (2) Focus on IT consultancy, (3) Maintain dual focus, or (4) Pivot strategy.", details: { week: "1-2", priority: "Critical" }},
+            { id: 38, month: 6, title: "Marketing Channel Optimization", category: "marketing", icon: "🔄", description: "Analyze which marketing channels (LinkedIn, email, events, paid ads, referrals) drove best results. Reallocate budget to highest ROI channels.", details: { week: "1-2", priority: "High" }},
+            { id: 39, month: 6, title: "12-Month Growth Roadmap", category: "operations", icon: "📋", description: "Create detailed 12-month plan for Year 2 including revenue targets, team expansion, product development, and market expansion strategies.", details: { week: "2-3", priority: "High" }},
+            { id: 40, month: 6, title: "Technology Stack Audit", category: "tech", icon: "⚡", description: "Review development tools, infrastructure, and processes. Identify areas for automation, efficiency improvements, or technology upgrades.", details: { week: "2-3", priority: "Medium" }},
+            { id: 41, month: 6, title: "Team Expansion Planning", category: "operations", icon: "🏆", description: "Plan hiring needs for next 6-12 months based on growth trajectory. Consider additional developers, account managers, or marketing specialists.", details: { week: "3-4", priority: "High" }},
+            { id: 42, month: 6, title: "Celebrate Wins & Learn from Failures", category: "sales", icon: "🎉", description: "Document key successes, client testimonials, and lessons learned. Celebrate team achievements and use insights to refine strategy for Year 2.", details: { week: "4", priority: "High" }},
+        ];
+        
+        // State management
+        let team = [];
+        let assignments = {};
+        let completedTasks = new Set();
+        let currentFilter = 'all';
+        let currentView = 'timeline';
+        
+        // Initialize
+        function init() {
+            loadData();
+            renderTimeline();
+            updateStats();
+            updateTeamCount();
+        }
+        
+        // Load saved data
+        function loadData() {
+            const savedTeam = localStorage.getItem('nuralink_team');
+            const savedAssignments = localStorage.getItem('nuralink_assignments');
+            const savedCompleted = localStorage.getItem('nuralink_completed');
+            
+            if (savedTeam) team = JSON.parse(savedTeam);
+            if (savedAssignments) assignments = JSON.parse(savedAssignments);
+            if (savedCompleted) completedTasks = new Set(JSON.parse(savedCompleted));
+        }
+        
+        // Save data
+        function saveData() {
+            localStorage.setItem('nuralink_team', JSON.stringify(team));
+            localStorage.setItem('nuralink_assignments', JSON.stringify(assignments));
+            localStorage.setItem('nuralink_completed', JSON.stringify([...completedTasks]));
+        }
+        
+        // Render timeline
+        function renderTimeline() {
+            const container = document.getElementById('timelineView');
+            const monthsData = {};
+            
+            // Group activities by month
+            activities.forEach(activity => {
+                if (!monthsData[activity.month]) {
+                    monthsData[activity.month] = [];
+                }
+                monthsData[activity.month].push(activity);
+            });
+            
+            const monthTitles = {
+                1: { title: "Foundation & Setup", subtitle: "Legal entity, branding, and initial infrastructure" },
+                2: { title: "Product Development & Marketing Prep", subtitle: "Build core offerings and establish market presence" },
+                3: { title: "Launch & Initial Outreach", subtitle: "Go-to-market execution and first client acquisition" },
+                4: { title: "Scale & Optimize", subtitle: "Refine processes and expand client base" },
+                5: { title: "Expansion & Product Enhancement", subtitle: "Broaden offerings and strengthen market position" },
+                6: { title: "Review, Pivot & Plan Next Phase", subtitle: "Evaluate performance and set strategy for growth" }
+            };
+            
+            let html = '';
+            
+            Object.keys(monthsData).sort().forEach(month => {
+                const monthInfo = monthTitles[month];
+                html += `
+                    <div class="month-section">
+                        <div class="month-header">
+                            <div class="month-number">${month}</div>
+                            <div class="month-info">
+                                <h3>${monthInfo.title}</h3>
+                                <p>${monthInfo.subtitle}</p>
+                            </div>
+                        </div>
+                        <div class="activities-grid">
+                            ${monthsData[month].map(activity => renderActivityCard(activity)).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render activity card
+        function renderActivityCard(activity) {
+            const isCompleted = completedTasks.has(activity.id);
+            const assignedTo = assignments[activity.id];
+            const assignee = assignedTo ? team.find(m => m.id === assignedTo) : null;
+            
+            const detailsHtml = Object.entries(activity.details)
+                .map(([key, value]) => `<div class="detail-item"><strong>${key}:</strong> ${value}</div>`)
+                .join('');
+            
+            return `
+                <div class="activity-card ${isCompleted ? 'completed' : ''}" data-category="${activity.category}" data-id="${activity.id}">
+                    <div class="activity-header">
+                        <div class="activity-icon category-${activity.category}">${activity.icon}</div>
+                        <div class="activity-title">
+                            <h4>${activity.title}</h4>
+                            <span class="activity-category">${activity.category}</span>
+                        </div>
+                    </div>
+                    <div class="activity-description">${activity.description}</div>
+                    <div class="activity-details">${detailsHtml}</div>
+                    
+                    <div class="assignee-section">
+                        <div class="assignee-label">Assigned to:</div>
+                        ${assignee ? 
+                            `<div class="assignee-badge">
+                                <div class="avatar">${assignee.name.split(' ').map(n => n[0]).join('')}</div>
+                                ${assignee.name}
+                            </div>` :
+                            `<select class="assignee-select" onchange="assignTask(${activity.id}, this.value)">
+                                <option value="">Unassigned - Click to assign</option>
+                                ${team.map(member => `<option value="${member.id}">${member.name} (${member.role})</option>`).join('')}
+                            </select>`
+                        }
+                    </div>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="task-${activity.id}" ${isCompleted ? 'checked' : ''} onchange="toggleComplete(${activity.id})">
+                        <label for="task-${activity.id}">Mark as Complete</label>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Switch view
+        function switchView(view) {
+            currentView = view;
+            const buttons = document.querySelectorAll('.toggle-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('timelineView').classList.toggle('active', view === 'timeline');
+            document.getElementById('teamView').classList.toggle('active', view === 'team');
+            
+            if (view === 'team') {
+                renderTeamView();
+            }
+        }
+        
+        // Render team view
+        function renderTeamView() {
+            const container = document.getElementById('teamGrid');
+            
+            if (team.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 4rem; grid-column: 1/-1;">
+                        <h3 style="color: #1e3c72; margin-bottom: 1rem;">No Team Members Yet</h3>
+                        <p style="color: #666; margin-bottom: 2rem;">Add team members to start assigning tasks</p>
+                        <button class="team-btn" onclick="openTeamModal()">➕ Add Team Members</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            team.forEach(member => {
+                const memberTasks = activities.filter(a => assignments[a.id] === member.id);
+                const completedCount = memberTasks.filter(a => completedTasks.has(a.id)).length;
+                
+                html += `
+                    <div class="team-column">
+                        <div class="team-column-header">
+                            <div class="member-avatar">${member.name.split(' ').map(n => n[0]).join('')}</div>
+                            <div style="flex: 1;">
+                                <h3>${member.name}</h3>
+                                <p style="color: #666; font-size: 0.9rem;">${member.role}</p>
+                            </div>
+                            <div class="task-count">${completedCount}/${memberTasks.length}</div>
+                        </div>
+                        ${memberTasks.map(task => `
+                            <div class="mini-activity-card ${completedTasks.has(task.id) ? 'completed' : ''}">
+                                <div class="mini-activity-header">
+                                    <span class="mini-activity-icon">${task.icon}</span>
+                                    <span class="mini-activity-title">${task.title}</span>
+                                </div>
+                                <div class="mini-activity-month">Month ${task.month}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Filter by category
+        function filterCategory(category) {
+            currentFilter = category;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const cards = document.querySelectorAll('.activity-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Toggle complete
+        function toggleComplete(taskId) {
+            if (completedTasks.has(taskId)) {
+                completedTasks.delete(taskId);
+            } else {
+                completedTasks.add(taskId);
+            }
+            saveData();
+            updateStats();
+            renderTimeline();
+            if (currentView === 'team') renderTeamView();
+        }
+        
+        // Assign task
+        function assignTask(taskId, memberId) {
+            if (memberId) {
+                assignments[taskId] = parseInt(memberId);
+            } else {
+                delete assignments[taskId];
+            }
+            saveData();
+            renderTimeline();
+            if (currentView === 'team') renderTeamView();
+        }
+        
+        // Update stats
+        function updateStats() {
+            const total = activities.length;
+            const completed = completedTasks.size;
+            const percent = Math.round((completed / total) * 100);
+            
+            document.getElementById('totalActivities').textContent = total;
+            document.getElementById('completedActivities').textContent = completed;
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('progressBar').style.width = percent + '%';
+        }
+        
+        // Update team count
+        function updateTeamCount() {
+            document.getElementById('teamCount').textContent = team.length;
+        }
+        
+        // Open team modal
+        function openTeamModal() {
+            document.getElementById('teamModal').classList.add('active');
+            renderTeamList();
+        }
+        
+        // Close team modal
+        function closeTeamModal() {
+            document.getElementById('teamModal').classList.remove('active');
+        }
+        
+        // Render team list
+        function renderTeamList() {
+            const container = document.getElementById('teamList');
+            
+            if (team.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 12px; border: 2px dashed #ddd;">
+                        <p style="color: #999; font-size: 0.95rem; margin: 0;">
+                            No team members yet. Add your first member above! 👆
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = team.map(member => {
+                const taskCount = activities.filter(a => assignments[a.id] === member.id).length;
+                const completedCount = activities.filter(a => assignments[a.id] === member.id && completedTasks.has(a.id)).length;
+                const progress = taskCount > 0 ? Math.round((completedCount / taskCount) * 100) : 0;
+                
+                return `
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-avatar">${member.name.split(' ').map(n => n[0]).join('')}</div>
+                            <div class="member-details">
+                                <h4>${member.name}</h4>
+                                <p style="margin-bottom: 0.25rem;">${member.role}${member.email ? ' • ' + member.email : ''}</p>
+                                <p style="font-size: 0.85rem; color: #43e97b; font-weight: 600;">
+                                    ${taskCount > 0 ? `${completedCount}/${taskCount} tasks completed (${progress}%)` : 'No tasks assigned yet'}
+                                </p>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeTeamMember(${member.id})" title="Remove team member">
+                            🗑️ Remove
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Add team member
+        function addTeamMember() {
+            const name = document.getElementById('memberName').value.trim();
+            const role = document.getElementById('memberRole').value;
+            const email = document.getElementById('memberEmail').value.trim();
+            
+            if (!name || !role) {
+                alert('Please fill in both name and role');
+                return;
+            }
+            
+            const member = {
+                id: Date.now(),
+                name: name,
+                role: role,
+                email: email || null
+            };
+            
+            team.push(member);
+            saveData();
+            
+            // Clear form
+            document.getElementById('memberName').value = '';
+            document.getElementById('memberRole').value = '';
+            document.getElementById('memberEmail').value = '';
+            
+            renderTeamList();
+            updateTeamCount();
+            renderTimeline();
+            
+            // Show success message
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Added Successfully!';
+            btn.style.background = '#43e97b';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '#1e3c72';
+            }, 2000);
+        }
+        
+        // Remove team member
+        function removeTeamMember(memberId) {
+            if (!confirm('Are you sure you want to remove this team member? Their task assignments will be cleared.')) {
+                return;
+            }
+            
+            team = team.filter(m => m.id !== memberId);
+            
+            // Clear assignments
+            Object.keys(assignments).forEach(taskId => {
+                if (assignments[taskId] === memberId) {
+                    delete assignments[taskId];
+                }
+            });
+            
+            saveData();
+            renderTeamList();
+            updateTeamCount();
+            renderTimeline();
+            if (currentView === 'team') renderTeamView();
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
